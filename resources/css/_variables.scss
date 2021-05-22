@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&family=Poppins&display=swap');
+
+$f-title: 'Varela Round', Arial, sans-serif;
+$f-button: $f-title;
+$f-text: 'Poppins', Arial, sans-serif;
+
+$c-white: rgb(250, 250, 250);
+$c-grey: rgb(240, 240, 240);
+
+$c-text: rgb(12, 12, 12);
+$c-border: rgb(210, 210, 210);
+
+$c-main: rgb(102, 126, 234);
+$c-main-dark: rgb(75, 100, 209);
+$c-secondary: rgb(118, 75, 162);
+$c-secondary-dark: rgb(90, 52, 129);
+
+$gradient: linear-gradient(180deg, $c-main 0%, $c-secondary 100%);
+$gradient-flat: linear-gradient(90deg, $c-main 0%, $c-secondary 100%);
+
+$border: 1px solid $c-border;
+$border-light: 1px solid rgba($c-border, .5);

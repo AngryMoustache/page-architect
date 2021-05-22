@@ -1,6 +1,6 @@
 {
   "name": "angry-moustache/page-architect",
-  "description": "Package for making forms",
+  "description": "Package for making complicated pages in Rambo",
   "keywords": [],
   "license": "MIT",
   "require": {

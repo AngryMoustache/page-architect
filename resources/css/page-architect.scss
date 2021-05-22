@@ -1,0 +1,46 @@
+@import 'variables';
+
+:root {
+    --toolbar-width: 350px;
+}
+
+.pa {
+    position: fixed;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+    z-index: 1000;
+    background: $c-grey;
+    display: flex;
+
+    &-content {
+        width: calc(100% - var(--toolbar-width));
+        height: 100vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        &-page {
+            margin: 2rem auto;
+            width: 1000px;
+            padding: 1rem;
+            background: $c-white;
+            border: $border;
+
+            &-block {
+                border: $border;
+                border-style: dashed;
+                border-radius: .2rem;
+                padding: 1rem;
+                margin: 1rem 0;
+            }
+        }
+    }
+
+    &-tools {
+        width: var(--toolbar-width);
+        height: 100vh;
+        background: $c-white;
+        border-left: $border;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+}
