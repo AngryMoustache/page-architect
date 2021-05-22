@@ -1,0 +1,28 @@
+{
+  "name": "angry-moustache/page-architect",
+  "description": "Package for making forms",
+  "keywords": [],
+  "license": "MIT",
+  "require": {
+    "php": ">=7.4.0",
+    "livewire/livewire": "^2.0",
+    "angry-moustache/rambo": "dev-master"
+  },
+  "autoload": {
+    "files": [
+        "src/helpers.php"
+    ],
+    "psr-4": {
+      "AngryMoustache\\PageArchitect\\": "src/",
+    }
+  },
+  "extra": {
+    "laravel": {
+        "providers": [
+            "AngryMoustache\\PageArchitect\\PageArchitectServiceProvider"
+        ]
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
