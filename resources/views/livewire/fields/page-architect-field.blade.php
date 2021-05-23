@@ -5,9 +5,25 @@
         Edit content
     </a>
 
+    @if ($value !== $originalValue)
+        <br>
+        <br>
+        <div class="rambo-warning">
+            <i class="fas fa-exclamation-triangle"></i>
+            <p>
+                Warning, you have unsaved changes!<br>
+                Remember to save the resource to save your changes.
+            </p>
+        </div>
+    @endif
+
     {{-- Page architect --}}
     @if ($editing)
         <div class="pa">
+            <div class="pa-content-overlay" wire:loading.flex wire:target="savePage">
+                <x-rambo::loading />
+            </div>
+
             <div class="pa-content">
                 <div class="pa-content-page" wire:sortable="sortBlocks">
                     @if (! empty($blockValues) && is_iterable($blockValues))
@@ -87,7 +103,7 @@
                 @if ($modal['type'] !== 'deleting')
                     <div class="modal-card-subtitle">
                         <select wire:model="modal.selected">
-                            <option value="">-</option>
+                            <option value="">- Select a block -</option>
                             @foreach ($blocks as $block)
                                 <option value="{{ get_class($block) }}">
                                     {{ $block->getName() }}

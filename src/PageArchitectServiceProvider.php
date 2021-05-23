@@ -50,7 +50,6 @@ class PageArchitectServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__ . '/../public/css' => public_path('vendor/page-architect/css'),
-            __DIR__ . '/../public/js' => public_path('vendor/page-architect/js'),
         ], 'page-architect-required-assets');
     }
 

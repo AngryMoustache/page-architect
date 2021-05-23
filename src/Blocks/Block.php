@@ -28,6 +28,6 @@ abstract class Block
 
     public function getName()
     {
-        return Rambo::getNameFromClassName(get_class($this));
+        return $this->name ?? Rambo::getNameFromClassName(get_class($this));
     }
 }

@@ -6,6 +6,8 @@ use AngryMoustache\Rambo\Resource\Fields\SelectField;
 
 class SpacerBlock extends Block
 {
+    public $name = 'Spacer';
+
     public function fields()
     {
         return [
