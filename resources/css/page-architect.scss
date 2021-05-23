@@ -25,22 +25,158 @@
             background: $c-white;
             border: $border;
 
+            &-add-button {
+                a {
+                    display: block;
+                    width: 60%;
+                    margin: 0 20%;
+                    padding: 1rem;
+                    border: $border;
+                    border-radius: .2rem;
+                    border-style: dashed;
+                    text-align: center;
+                    font-family: $f-title;
+                    font-size: 1.2rem;
+                    color: rgba(black, .5);
+                    cursor: pointer;
+
+                    i {
+                        margin-left: .5rem;
+                        color: rgba(black, .5);
+                    }
+
+                    &:hover {
+                        color: $c-main;
+
+                        i {
+                            color: $c-main;
+                        }
+                    }
+                }
+            }
+
             &-block {
+                position: relative;
                 border: $border;
-                border-style: dashed;
                 border-radius: .2rem;
-                padding: 1rem;
                 margin: 1rem 0;
+
+                &-name {
+                    padding: .5rem 1rem;
+                    border-bottom: $border;
+                    font-size: 1.5rem;
+                    background: $c-grey;
+                }
+
+                &-preview {
+                    padding: 1rem;
+                }
+
+                &-actions {
+                    transition: opacity .2s;
+                }
+
+                .container {
+                    width: 100%;
+                }
+
+                &:hover {
+                    .pa-content-page-block-actions {
+                        opacity: 1;
+                    }
+                }
+
+                &-actions {
+                    position: absolute;
+                    left: calc(-30px - 1.5rem);
+                    top: 0; bottom: 0;
+                    opacity: 0;
+                    padding: 0 1rem 1rem;
+
+                    a {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: $c-main;
+                        margin-bottom: .5rem;
+                        border-radius: .2rem;
+                        cursor: pointer;
+
+                        &:hover {
+                            background: $c-main-dark;
+                        }
+
+                        i {
+                            color: $c-white;
+                        }
+                    }
+                }
             }
         }
     }
 
     &-tools {
+        display: flex;
+        flex-wrap: wrap;
         width: var(--toolbar-width);
         height: 100vh;
         background: $c-white;
         border-left: $border;
         overflow-y: auto;
         overflow-x: hidden;
+
+        &-blocklist {
+            width: 100%;
+
+            h2 {
+                padding: .75rem 1rem;
+                border-bottom: $border;
+                font-size: 1.5rem;
+                background: $c-grey;
+            }
+
+            ul {
+                li {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: .5rem;
+                    border-bottom: $border;
+
+                    span {
+                        padding-left: .5rem;
+                        cursor: grab;
+
+                        i {
+                            padding-right: .5rem;
+                        }
+                    }
+
+                    .pa-tools-blocklist-actions {
+                        a {
+                            display: inline-block;
+                            padding: .5rem;
+                            cursor: pointer;
+
+                            &:hover {
+                                i {
+                                    color: $c-main;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &-buttons {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: auto;
+            padding: 1rem 0 1rem 1rem;
+        }
     }
 }

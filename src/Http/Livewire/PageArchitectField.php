@@ -6,11 +6,12 @@ use AngryMoustache\Rambo\Http\Livewire\Fields\LivewireField;
 
 class PageArchitectField extends LivewireField
 {
-    public $editing = true;
+    public $editing = false;
     public $modal = null;
     public $blocks = null;
     public $fields = null;
     public $rules = [];
+    public $originalValue = null;
 
     protected $listeners = [
         'field:pa-update' => 'updateField',
@@ -28,6 +29,8 @@ class PageArchitectField extends LivewireField
         collect(config('page-architect.blocks', []))
             ->mapWithKeys(fn ($block) => [$block => (new $block())])
             ->each(fn ($block, $key) => $this->rules[$key] = $block->validationFieldStack());
+
+        $this->originalValue = $this->value;
     }
 
     public function render()
@@ -153,5 +156,21 @@ class PageArchitectField extends LivewireField
     {
         $this->editing = false;
         $this->emitValue($this->value);
+    }
+
+    public function sortBlocks($blocks)
+    {
+        $value = $this->value;
+        $this->value = [];
+
+        foreach ($blocks as $block) {
+            $this->value[] = $value[$block['value']];
+        }
+    }
+
+    public function cancelEdit()
+    {
+        $this->value = $this->originalValue;
+        $this->editing = false;
     }
 }

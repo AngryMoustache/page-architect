@@ -1,5 +1,5 @@
-<div class="pa-content-page-buttons">
-    <div class="button" wire:click="addNewBlock({{ $index }})">
-        Add block
-    </div>
+<div class="pa-content-page-add-button">
+    <a wire:click="addNewBlock({{ $index }})">
+        Insert block <i class="fas fa-plus"></i>
+    </a>
 </div>

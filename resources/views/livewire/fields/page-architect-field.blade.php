@@ -9,24 +9,34 @@
     @if ($editing)
         <div class="pa">
             <div class="pa-content">
-                <div class="pa-content-page">
+                <div class="pa-content-page" wire:sortable="sortBlocks">
                     @if (! empty($blockValues) && is_iterable($blockValues))
                         <x-page-architect::add-block-button :index="0" />
-
                         @foreach ($blockValues as $key => $block)
-                            <div class="pa-content-page-block">
-                                {{ $block->previewRender() }}
+                            <div
+                                wire:sortable.item="{{ $key }}"
+                                wire:key="block-{{ $key }}"
+                            >
+                                <div class="pa-content-page-block">
+                                    <h1 class="pa-content-page-block-name">
+                                        {{ $block->getName() }}
+                                    </h1>
 
-                                <div class="button" wire:click="editBlock({{ $key }})">
-                                    Edit
+                                    <div class="pa-content-page-block-preview">
+                                        {{ $block->previewRender() }}
+                                    </div>
+
+                                    <div class="pa-content-page-block-actions">
+                                        <a wire:sortable.handle>
+                                            <i class="fas fa-bars"></i>
+                                        </a>
+
+                                        <x-page-architect::block-actions :index="$key" />
+                                    </div>
                                 </div>
 
-                                <div class="button" wire:click="removeBlock({{ $key }})">
-                                    Remove
-                                </div>
+                                <x-page-architect::add-block-button :index="$key + 1" />
                             </div>
-
-                            <x-page-architect::add-block-button :index="$key + 1" />
                         @endforeach
                     @else
                         <x-page-architect::add-block-button :index="null" />
@@ -35,20 +45,31 @@
             </div>
 
             <div class="pa-tools">
-                <h2>Blocks</h2>
-                <ul>
-                    @foreach ($blockValues as $block)
-                        <li>{{ $block->getName() }}</li>
-                    @endforeach
-                </ul>
+                <div class="pa-tools-blocklist">
+                    <h2>Blocks</h2>
+                    <ul wire:sortable="sortBlocks">
+                        @foreach ($blockValues as $key => $block)
+                            <li wire:sortable.item="{{ $key }}" wire:key="tool-block-{{ $key }}">
+                                <span wire:sortable.handle>
+                                    <i class="fas fa-bars"></i>
+                                    {{ $block->getName() }}
+                                </span>
+
+                                <div class="pa-tools-blocklist-actions">
+                                    <x-page-architect::block-actions :index="$key" />
+                                </div>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
 
                 <div class="pa-tools-buttons">
-                    <div class="button" wire:click="cancelEdit">
-                        Cancel
-                    </div>
-
                     <div class="button" wire:click="savePage">
                         Save
+                    </div>
+
+                    <div class="button-link" wire:click="cancelEdit">
+                        Cancel
                     </div>
                 </div>
             </div>
