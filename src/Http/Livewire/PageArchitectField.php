@@ -2,16 +2,15 @@
 
 namespace AngryMoustache\PageArchitect\Http\Livewire;
 
-use AngryMoustache\PageArchitect\Blocks\AttachmentBlock;
-use AngryMoustache\PageArchitect\Blocks\TextBlock;
 use AngryMoustache\Rambo\Http\Livewire\Fields\LivewireField;
 
 class PageArchitectField extends LivewireField
 {
-    public $editing = false;
+    public $editing = true;
     public $modal = null;
     public $blocks = null;
     public $fields = null;
+    public $rules = [];
 
     protected $listeners = [
         'field:pa-update' => 'updateField',
@@ -25,14 +24,17 @@ class PageArchitectField extends LivewireField
         if (is_string($this->value)) {
             $this->value = json_decode($this->value, true);
         }
+
+        collect(config('page-architect.blocks', []))
+            ->mapWithKeys(fn ($block) => [$block => (new $block())])
+            ->each(fn ($block, $key) => $this->rules[$key] = $block->validationFieldStack());
     }
 
     public function render()
     {
-        $this->blocks = [
-            TextBlock::class => (new TextBlock()),
-            AttachmentBlock::class => (new AttachmentBlock()),
-        ];
+        $this->blocks = collect(config('page-architect.blocks', []))
+            ->mapWithKeys(fn ($block) => [$block => (new $block())])
+            ->toArray();
 
         $blockValues = collect($this->value)->map(function ($block) {
             return (new $block['type']($block['data']));
@@ -68,26 +70,29 @@ class PageArchitectField extends LivewireField
 
     public function editBlock($index)
     {
-        $this->fields = $this->value[$index]['data'];
+        $block = $this->value[$index];
+        $this->fields = $block['data'];
         $this->modal = [
             'title' => 'Edit block',
             'button_text' => 'Update block',
             'index' => $index,
             'type' => 'editing',
-            'selected' => $this->value[$index]['type'],
-            'fields' => $this->value[$index]['data'],
+            'selected' => $block['type'],
+            'fields' => $block['data'],
         ];
     }
 
     public function removeBlock($index)
     {
-        $this->fields = $this->value[$index]['data'];
+        $block = $this->value[$index];
+        $this->fields = $block['data'];
         $this->modal = [
             'title' => 'Are you sure you want to remove this block?',
             'button_text' => 'Delete block',
             'index' => $index,
             'type' => 'deleting',
-            'fields' => $this->value[$index]['data'],
+            'fields' => $block['data'],
+            'block' => (new $block['type']($block['data'])),
         ];
     }
 
@@ -104,6 +109,18 @@ class PageArchitectField extends LivewireField
             'type' => $this->modal['selected'] ?? null,
             'data' => $this->modal['fields'] ?? [],
         ];
+
+        // Inserting/updating
+        if (in_array($this->modal['type'], ['creating', 'editing'])) {
+            if (empty($this->modal['selected'])) {
+                return;
+            }
+
+            $rules = $this->rules[$this->modal['selected']] ?? [];
+            if (! empty($rules)) {
+                $this->validate($rules);
+            }
+        }
 
         // Insert new block
         if ($this->modal['type'] === 'creating') {

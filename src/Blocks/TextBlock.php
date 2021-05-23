@@ -6,8 +6,6 @@ use AngryMoustache\Rambo\Resource\Fields\TextareaField;
 
 class TextBlock extends Block
 {
-    public $name = 'Text Block';
-
     public function fields()
     {
         return [
