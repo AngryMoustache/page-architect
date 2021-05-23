@@ -173,4 +173,9 @@ class PageArchitectField extends LivewireField
         $this->value = $this->originalValue;
         $this->editing = false;
     }
+
+    public function clearContent()
+    {
+        $this->value = [];
+    }
 }

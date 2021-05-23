@@ -5,6 +5,10 @@
         Edit content
     </a>
 
+    <a class="button" wire:click.prevent="clearContent">
+        Clear content
+    </a>
+
     @if ($value !== $originalValue)
         <br>
         <br>
