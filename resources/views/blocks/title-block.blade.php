@@ -1,9 +1,9 @@
 <div class="container">
-    <h{{ $block['heading'] }}
-        @if ($block['highlighted'])
+    <h{{ $block['heading'] ?? '1' }}
+        @if ($block['highlighted'] ?? false)
             class="highlight"
         @endif
     >
-        {{ $block['title'] }}
-    </h{{ $block['heading'] }}>
+        {{ $block['title'] ?? '' }}
+    </h{{ $block['heading'] ?? '1' }}>
 </div>
