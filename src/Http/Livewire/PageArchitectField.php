@@ -17,13 +17,13 @@ class PageArchitectField extends LivewireField
         'field:pa-update' => 'updateField',
     ];
 
-    public function mount($field, $emit = null, $clearOnUpdate = null)
+    public function mount($field, $emit = null, $emitAffix = null, $clearOnUpdate = null)
     {
-        parent::mount($field, $emit, $clearOnUpdate);
+        parent::mount($field, $emit, $emitAffix, $clearOnUpdate);
 
         $this->value ??= [];
         if (is_string($this->value)) {
-            $this->value = json_decode($this->value, true);
+            $this->value = json_decode($this->value, true) ?? [];
         }
 
         collect(config('page-architect.blocks', []))
