@@ -138,14 +138,16 @@
                         </table>
                     @else
                         @if ($modal['selected'] !== '')
-                            @foreach($blocks[$modal['selected']]->fields() as $field)
-                                {{
-                                    $field
-                                        ->item($modal['fields'])
-                                        ->emit('field:pa-update')
-                                        ->render()
-                                }}
-                            @endforeach
+                            <div wire:key="{{ $modal['selected'] }}">
+                                @foreach($blocks[$modal['selected']]->fields() as $field)
+                                    {{
+                                        $field
+                                            ->item($modal['fields'])
+                                            ->emit('field:pa-update')
+                                            ->render()
+                                    }}
+                                @endforeach
+                            </div>
                         @endif
                     @endif
                 </div>

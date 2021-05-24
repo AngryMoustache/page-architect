@@ -9,7 +9,8 @@ class TextBlock extends Block
     public function fields()
     {
         return [
-            TextareaField::make('text'),
+            TextareaField::make('text')
+                ->rules('required'),
         ];
     }
 

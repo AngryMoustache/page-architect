@@ -10,7 +10,8 @@ class AttachmentBlock extends Block
     public function fields()
     {
         return [
-            ManyAttachmentField::make('attachments'),
+            ManyAttachmentField::make('attachments')
+                ->rules('required'),
         ];
     }
 

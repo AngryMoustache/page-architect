@@ -12,6 +12,7 @@ class TitleBlock extends Block
     {
         return [
             SelectField::make('heading')
+                ->rules('required')
                 ->options([
                     1 => 'H1',
                     2 => 'H2',
@@ -21,7 +22,8 @@ class TitleBlock extends Block
                     6 => 'H6',
                 ]),
 
-            TextField::make('title'),
+            TextField::make('text')
+                ->rules('required'),
 
             BooleanField::make('highlighted'),
         ];
