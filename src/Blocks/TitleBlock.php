@@ -22,7 +22,7 @@ class TitleBlock extends Block
                     6 => 'H6',
                 ]),
 
-            TextField::make('text')
+            TextField::make('title')
                 ->rules('required'),
 
             BooleanField::make('highlighted'),
