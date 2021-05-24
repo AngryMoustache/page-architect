@@ -1,5 +1,5 @@
 <div class="container">
-    @foreach ($attachments as $attachment)
+    @foreach ($block['attachments'] ?? [] as $attachment)
         <img
             style="width: 15rem"
             src="{{ optional($attachment)->format('thumb') }}"

@@ -1,7 +1,7 @@
 <div>
     <link href="{{ asset('vendor/page-architect/css/page-architect.css') }}" rel="stylesheet">
 
-    <a class="button" wire:click.prevent="openPageArchitect">
+    <a class="button mr-1" wire:click.prevent="openPageArchitect">
         Edit content
     </a>
 
