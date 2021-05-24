@@ -20,11 +20,4 @@ class SpacerBlock extends Block
                 ]),
         ];
     }
-
-    public function render()
-    {
-        return view('page-architect::blocks.spacer-block', [
-            'block' => $this->data,
-        ]);
-    }
 }

@@ -26,22 +26,20 @@ class PageArchitectField extends LivewireField
             $this->value = json_decode($this->value, true) ?? [];
         }
 
-        collect(config('page-architect.blocks', []))
-            ->mapWithKeys(fn ($block) => [$block => (new $block())])
-            ->each(fn ($block, $key) => $this->rules[$key] = $block->validationFieldStack());
+        $this->getBlocks()->each(fn ($block, $key) =>
+            $this->rules[$key] = $block->validationFieldStack()
+        );
 
         $this->originalValue = $this->value;
     }
 
     public function render()
     {
-        $this->blocks = collect(config('page-architect.blocks', []))
-            ->mapWithKeys(fn ($block) => [$block => (new $block())])
-            ->toArray();
+        $this->blocks = $this->getBlocks()->toArray();
 
-        $blockValues = collect($this->value)->map(function ($block) {
-            return (new $block['type']($block['data']));
-        });
+        $blockValues = collect($this->value)
+            ->filter(fn ($block) => class_exists($block['type']))
+            ->map(fn ($block) => (new $block['type']($block['data'])));
 
         return view('page-architect::livewire.fields.page-architect-field', [
             'blockValues' => $blockValues,
@@ -182,5 +180,11 @@ class PageArchitectField extends LivewireField
     public function clearContent()
     {
         $this->value = [];
+    }
+
+    private function getBlocks()
+    {
+        return collect(config('page-architect.blocks', []))
+            ->mapWithKeys(fn ($block) => [$block => (new $block())]);
     }
 }

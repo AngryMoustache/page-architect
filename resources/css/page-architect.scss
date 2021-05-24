@@ -72,10 +72,45 @@
                 margin: 1rem 0;
 
                 &-name {
-                    padding: .5rem 1rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: .5rem;
                     border-bottom: $border;
-                    font-size: 1.5rem;
                     background: $c-grey;
+
+                    h1 {
+                        padding-left: .5rem;
+                        font-size: 1.2rem;
+                    }
+
+                    &-actions {
+                        display: flex;
+                        justify-content: flex-end;
+                        // opacity: 0;
+
+                        a {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            width: 30px;
+                            height: 30px;
+                            background: $c-main;
+                            border-radius: .2rem;
+                            cursor: pointer;
+
+                            // margin-bottom: .5rem;
+                            margin-left: .5rem;
+
+                            &:hover {
+                                background: $c-main-dark;
+                            }
+
+                            i {
+                                color: $c-white;
+                            }
+                        }
+                    }
                 }
 
                 &-preview {
@@ -93,34 +128,6 @@
                 &:hover {
                     .pa-content-page-block-actions {
                         opacity: 1;
-                    }
-                }
-
-                &-actions {
-                    position: absolute;
-                    left: calc(-30px - 1.5rem);
-                    top: 0; bottom: 0;
-                    opacity: 0;
-                    padding: 0 1rem 1rem;
-
-                    a {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        width: 30px;
-                        height: 30px;
-                        background: $c-main;
-                        margin-bottom: .5rem;
-                        border-radius: .2rem;
-                        cursor: pointer;
-
-                        &:hover {
-                            background: $c-main-dark;
-                        }
-
-                        i {
-                            color: $c-white;
-                        }
                     }
                 }
             }
@@ -161,7 +168,6 @@
 
                     span {
                         padding-left: .5rem;
-                        cursor: grab;
 
                         i {
                             padding-right: .5rem;
@@ -199,5 +205,11 @@
             padding: 1rem 0 1rem 1rem;
             border-top: $border;
         }
+    }
+}
+
+@media (max-width: 1450px) {
+    .pa-content-page {
+        width: 100%;
     }
 }

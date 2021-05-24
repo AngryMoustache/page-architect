@@ -2,7 +2,6 @@
 
 namespace AngryMoustache\PageArchitect\Blocks;
 
-use AngryMoustache\Rambo\Resource\Fields\BooleanField;
 use AngryMoustache\Rambo\Resource\Fields\SelectField;
 use AngryMoustache\Rambo\Resource\Fields\TextField;
 
@@ -24,15 +23,6 @@ class TitleBlock extends Block
 
             TextField::make('title')
                 ->rules('required'),
-
-            BooleanField::make('highlighted'),
         ];
-    }
-
-    public function render()
-    {
-        return view('page-architect::blocks.title-block', [
-            'block' => $this->data,
-        ]);
     }
 }

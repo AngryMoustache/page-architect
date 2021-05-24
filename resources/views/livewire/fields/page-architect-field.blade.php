@@ -38,20 +38,20 @@
                                 wire:key="block-{{ $key }}"
                             >
                                 <div class="pa-content-page-block">
-                                    <h1 class="pa-content-page-block-name">
-                                        {{ $block->getName() }}
-                                    </h1>
+                                    <div class="pa-content-page-block-name">
+                                        <h1>{{ $block->getName() }}</h1>
+
+                                        <div class="pa-content-page-block-name-actions">
+                                            <a wire:sortable.handle class="move-cursor">
+                                                <i class="fas fa-bars"></i>
+                                            </a>
+
+                                            <x-page-architect::block-actions :index="$key" />
+                                        </div>
+                                    </div>
 
                                     <div class="pa-content-page-block-preview">
                                         {{ $block->previewRender() }}
-                                    </div>
-
-                                    <div class="pa-content-page-block-actions">
-                                        <a wire:sortable.handle>
-                                            <i class="fas fa-bars"></i>
-                                        </a>
-
-                                        <x-page-architect::block-actions :index="$key" />
                                     </div>
                                 </div>
 
@@ -70,7 +70,7 @@
                     <ul wire:sortable="sortBlocks">
                         @foreach ($blockValues as $key => $block)
                             <li wire:sortable.item="{{ $key }}" wire:key="tool-block-{{ $key }}">
-                                <span wire:sortable.handle>
+                                <span wire:sortable.handle class="move-cursor">
                                     <i class="fas fa-bars"></i>
                                     {{ $block->getName() }}
                                 </span>

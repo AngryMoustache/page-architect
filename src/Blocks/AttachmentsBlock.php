@@ -5,7 +5,7 @@ namespace AngryMoustache\PageArchitect\Blocks;
 use AngryMoustache\Media\Models\Attachment;
 use AngryMoustache\Rambo\Resource\Fields\ManyAttachmentField;
 
-class AttachmentBlock extends Block
+class AttachmentsBlock extends Block
 {
     public function fields()
     {
@@ -15,10 +15,9 @@ class AttachmentBlock extends Block
         ];
     }
 
-    public function render()
+    public function getData()
     {
-        return view('page-architect::blocks.attachment-block', [
-            'attachments' => Attachment::whereIn('id', $this->data['attachments'] ?? [])->get(),
-        ]);
+        $this->data['attachments'] = Attachment::whereIn('id', $this->data['attachments'] ?? [])->get();
+        return $this->data;
     }
 }
