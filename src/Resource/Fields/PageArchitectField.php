@@ -9,6 +9,8 @@ class PageArchitectField extends Field
     public $component = 'page-architect::fields.form.page-architect';
     public $showComponent = 'page-architect::fields.show.page-architect';
 
+    public $default = '[]';
+
     public function beforeSave($value)
     {
         if (! is_string($value)) {
