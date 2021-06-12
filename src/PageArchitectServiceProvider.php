@@ -3,7 +3,7 @@
 namespace AngryMoustache\PageArchitect;
 
 use AngryMoustache\PageArchitect\Facades\PageArchitect as FacadesPageArchitect;
-use AngryMoustache\PageArchitect\Http\Livewire\PageArchitectField;
+use AngryMoustache\PageArchitect\Http\Livewire\PageArchitectLivewireField;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
@@ -35,7 +35,7 @@ class PageArchitectServiceProvider extends ServiceProvider
 
     private function livewire()
     {
-        Livewire::component('page-architect-field', PageArchitectField::class);
+        Livewire::component('page-architect-livewire-field', PageArchitectLivewireField::class);
     }
 
     private function publishing()

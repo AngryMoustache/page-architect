@@ -4,7 +4,7 @@ namespace AngryMoustache\PageArchitect\Http\Livewire;
 
 use AngryMoustache\Rambo\Http\Livewire\Fields\LivewireField;
 
-class PageArchitectField extends LivewireField
+class PageArchitectLivewireField extends LivewireField
 {
     public $editing = false;
     public $modal = null;

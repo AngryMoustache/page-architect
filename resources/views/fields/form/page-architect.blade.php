@@ -4,7 +4,7 @@
     </div>
 
     <div class="crud-form-field-input">
-        <livewire:page-architect-field
+        <livewire:page-architect-livewire-field
             :key="$field->getName()"
             :field="$field"
         />
