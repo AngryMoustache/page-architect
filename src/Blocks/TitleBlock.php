@@ -2,8 +2,8 @@
 
 namespace AngryMoustache\PageArchitect\Blocks;
 
-use AngryMoustache\Rambo\Resource\Fields\SelectField;
-use AngryMoustache\Rambo\Resource\Fields\TextField;
+use AngryMoustache\Rambo\Fields\SelectField;
+use AngryMoustache\Rambo\Fields\TextField;
 
 class TitleBlock extends Block
 {

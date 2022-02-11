@@ -2,9 +2,7 @@
 
 namespace AngryMoustache\PageArchitect;
 
-use AngryMoustache\PageArchitect\Facades\PageArchitect as FacadesPageArchitect;
 use AngryMoustache\PageArchitect\Http\Livewire\PageArchitectLivewireField;
-use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 
@@ -20,12 +18,7 @@ class PageArchitectServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->app->booting(function() {
-            $loader = AliasLoader::getInstance();
-            $loader->alias('PageArchitect', FacadesPageArchitect::class);
-        });
-
-        $this->app->alias(PageArchitect::class, 'page-architect');
+        //
     }
 
     private function config()
