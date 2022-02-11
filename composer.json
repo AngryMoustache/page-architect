@@ -4,9 +4,8 @@
   "keywords": [],
   "license": "MIT",
   "require": {
-    "php": ">=7.4.0",
-    "livewire/livewire": "^2.0",
-    "angry-moustache/rambo": "dev-master"
+    "php": "^8.0",
+    "livewire/livewire": "^2.0"
   },
   "autoload": {
     "files": [
