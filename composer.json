@@ -6,7 +6,7 @@
   "require": {
     "php": ">=7.4.0",
     "livewire/livewire": "^2.0",
-    "angry-moustache/rambo": "dev-master"
+    "angry-moustache/rambo": "^3.0"
   },
   "autoload": {
     "files": [
